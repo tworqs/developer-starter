@@ -1,5 +1,5 @@
 {
-  "extends": "@tworqs/tsconfig",
+  "extends": "@finsweet/tsconfig",
   "compilerOptions": {
     "rootDir": ".",
     "baseUrl": "./",
@@ -9,7 +9,7 @@
       ]
     },
     "types": [
-      "@tworqs/ts-utils"
+      "@finsweet/ts-utils"
     ]
   }
 }
