@@ -8,9 +8,6 @@ window.Webflow.push(() => {
   const calendarElement = document.querySelector<HTMLElement>('[data-element="calendar"]');
   if (!calendarElement) return;
 
-  const events = getEvents();
-  console.log({ events });
-
   const calendar = new Calendar(calendarElement, {
     plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
     initialView: 'dayGridMonth',
@@ -21,16 +18,19 @@ window.Webflow.push(() => {
     },
     events: [
       {
-        title: 'Finsweet Stream!',
+        title: 'WoM Retreat',
         start: '2025-02-10',
         end: '2025-02-20',
+        color: 'pink',
       },
       {
-        title: 'Finsweet Party!',
-        start: '2025-02-15',
+        title: 'Health Clinic',
+        start: '2025-02-15T12:00',
+        end: '2025-02-15T23:00',
+        color: 'green',
       },
       {
-        title: 'my Stream!',
+        title: 'Ceremony',
         start: '2025-02-18',
       },
     ],
@@ -38,13 +38,3 @@ window.Webflow.push(() => {
 
   calendar.render();
 });
-
-const getEvents = () => {
-  const scripts = document.querySelectorAll<HTMLScriptElement>('[data-element="event-data"]');
-  console.log({scripts})
-const events = [...scripts].map((script)) => JSON.parse(script.textContent || '{}');
-
-return events;
-}
-
-}
