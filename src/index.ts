@@ -2,6 +2,8 @@ import { greetUser } from '$utils/greet';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
-  const name = 'John Doe';
-  greetUser(name);
+  const calendarElement = document.querySelector<HTMLElement>('data-element="calendar"');
+  if (!calendarElement) return;
+
+  console.log({ calendarElement });
 });
