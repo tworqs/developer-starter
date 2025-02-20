@@ -19,8 +19,14 @@ window.Webflow.push(() => {
     events: [
       {
         title: 'WoM Retreat',
-        start: '2025-02-10',
-        end: '2025-02-20',
+        start: '2025-02-21',
+        end: '2025-03-03',
+        color: 'orange',
+      },
+      {
+        title: 'Yoga Retreat',
+        start: '2025-02-07',
+        end: '2025-02-10',
         color: 'pink',
       },
       {
@@ -30,8 +36,16 @@ window.Webflow.push(() => {
         color: 'green',
       },
       {
-        title: 'Ceremony',
-        start: '2025-02-18',
+        title: 'Death Cafe',
+        start: '2025-02-15T16:00',
+        end: '2025-02-15T18:00',
+        color: 'purple',
+      },
+
+      {
+        title: 'Tobacco Ceremony',
+        start: '2025-02-18T14:00',
+        end: '2025-02-18T20:00',
       },
     ],
   });
