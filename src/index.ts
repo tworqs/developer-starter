@@ -5,7 +5,13 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
-  console.log('webflow is ready!');
+  // step 1. run pnpm i
+  // step 2.
+  // console.log('webflow is ready!');
+  // left off on 38:31 of https://www.youtube.com/watch?v=1nr9tanF2Rs
+
+  const events = getEvents();
+  console.log({ events });
 
   const calendarElement = document.querySelector<HTMLElement>('[data-element="calendar"]');
   if (!calendarElement) return;
@@ -18,46 +24,15 @@ window.Webflow.push(() => {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,listWeek', // add color here
     },
-    events: [
-      {
-        title: 'WoM Retreat',
-        start: '2025-04-21',
-        end: '2025-04-30',
-        color: '#FA0985',
-      },
-      {
-        title: 'WoM Site Launch',
-        start: '2025-04-20T13:00',
-        end: '2025-04-20T23:00',
-        color: '#FA0985',
-      },
-      {
-        title: 'Yoga Retreat',
-        start: '2025-04-07',
-        end: '2025-04-10',
-        color: '#DCB684',
-      },
-      {
-        title: 'Health Clinic',
-        start: '2025-04-15T12:00',
-        end: '2025-04-15T23:00',
-        color: '#2F5C18',
-      },
-      {
-        title: 'Death Cafe',
-        start: '2025-04-15T16:00',
-        end: '2025-04-15T18:00',
-        color: '#B7CAE4',
-      },
-
-      {
-        title: 'Tobacco Ceremony',
-        start: '2025-04-18T14:00',
-        end: '2025-04-18T20:00',
-        color: '#B7CAE4',
-      },
-    ],
+    events,
   });
 
   calendar.render();
 });
+
+const getEvents = () Event[]=> {
+  const scripts = document.querySelectorAll<HTMLScriptElement>('[data-element="event-data"]');
+  const events = [...scripts].map((script) => JSON.parse(script.textContent || '{}'));
+
+  return events;
+};
