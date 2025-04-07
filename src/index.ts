@@ -31,17 +31,20 @@ window.Webflow.push(() => {
   calendar.render();
 });
 
-const getEvents = () Event[]=> {
+const getEvents = (): Event[] => {
   const scripts = document.querySelectorAll<HTMLScriptElement>('[data-element="event-data"]');
-  const events = [...scripts]
-    .map((script) => {
-      const event: Event = JSON.parse(script.textContent!);
-      event.start = new Date(event.start);
-      event.end = new Date(event.end);
-            
-      return event;
-        
-     })
+  console.log({ scripts });
+  const events = [...scripts].map((script) => {
+    if (!script.textContent) {
+      return;
+    }
+
+    const event: Event = JSON.parse(script.textContent!);
+    event.start = new Date(event.start);
+    event.end = new Date(event.end);
+
+    return event;
+  });
 
   return events;
 };
