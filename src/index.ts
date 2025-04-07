@@ -7,7 +7,7 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   // step 1. run pnpm i
   // step 2.
-  // console.log('webflow is ready!');
+  console.log('webflow is ready!');
   // left off on 38:31 of https://www.youtube.com/watch?v=1nr9tanF2Rs
 
   const events = getEvents();
@@ -32,7 +32,15 @@ window.Webflow.push(() => {
 
 const getEvents = () Event[]=> {
   const scripts = document.querySelectorAll<HTMLScriptElement>('[data-element="event-data"]');
-  const events = [...scripts].map((script) => JSON.parse(script.textContent || '{}'));
+  const events = [...scripts]
+    .map((script) => {
+      const event: Event = JSON.parse(script.textContent!);
+      event.start = new Date(event.start);
+      event.end = new Date(event.end);
+            
+      return event;
+        
+     })
 
   return events;
 };
