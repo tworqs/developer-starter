@@ -25,6 +25,7 @@ window.Webflow.push(() => {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,listWeek', // add color here
     },
+    
     events,
   });
 
@@ -33,12 +34,8 @@ window.Webflow.push(() => {
 
 const getEvents = (): Event[] => {
   const scripts = document.querySelectorAll<HTMLScriptElement>('[data-element="event-data"]');
-  console.log({ scripts });
-  const events = [...scripts].map((script) => {
-    if (!script.textContent) {
-      return;
-    }
-
+  const events = [...scripts]
+  .map((script) => {
     const event: Event = JSON.parse(script.textContent!);
     event.start = new Date(event.start);
     event.end = new Date(event.end);
