@@ -7,8 +7,7 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   // step 1. run pnpm i
   // step 2. http://localhost:3000/index.js
-  // step 3.
-  console.log('webflow is ready!');
+  // step 3. console.log('webflow is ready!');
   // left off on 38:31 of https://www.youtube.com/watch?v=1nr9tanF2Rs
 
   const events = getEvents();
