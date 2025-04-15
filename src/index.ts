@@ -3,6 +3,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
+import type { Event } from './types';
+
 window.Webflow ||= [];
 window.Webflow.push(() => {
   // step 1. run pnpm i
@@ -11,9 +13,8 @@ window.Webflow.push(() => {
   // left off on 38:31 of https://www.youtube.com/watch?v=1nr9tanF2Rs
 
   const events = getEvents();
-  console.log({ events });
 
-  const calendarElement = document.querySelector<HTMLElement>('[data-element="calendar"]');
+  const calendarElement = document.querySelector<HTMLDivElement>('[data-element="calendar"]');
   if (!calendarElement) return;
 
   const calendar = new Calendar(calendarElement, {
@@ -24,8 +25,10 @@ window.Webflow.push(() => {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,listWeek', // add color here
     },
-    
     events,
+    eventClick(data) {
+      alert(`User clicked the event ${data.event.title}`);
+    },
   });
 
   calendar.render();
@@ -33,8 +36,7 @@ window.Webflow.push(() => {
 
 const getEvents = (): Event[] => {
   const scripts = document.querySelectorAll<HTMLScriptElement>('[data-element="event-data"]');
-  const events = [...scripts]
-  .map((script) => {
+  const events = [...scripts].map((script) => {
     const event: Event = JSON.parse(script.textContent!);
     event.start = new Date(event.start);
     event.end = new Date(event.end);
